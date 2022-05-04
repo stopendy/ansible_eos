@@ -16,9 +16,11 @@ eos_user_aggregate:
     role: network-operator
     state: present
 
-eos_globals:
-  - spanning-tree mode none
-  - aaa authorization exec default local
+admin_cleartext_password: admin
+arista_cleartext_password: arista
+
+admin_encrypted_password: '{{ admin_cleartext_password | password_hash("sha512", "veos") }}'
+arista_encrypted_password: '{{ arista_cleartext_password | password_hash("sha512", "veos") }}'
 
 eos_acls:
   - acls:

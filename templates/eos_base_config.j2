@@ -1,0 +1,7 @@
+hostname {{ hostname }}
+username admin privilege 15 role network-admin secret sha512 {{ admin_encrypted_password }}
+username arista privilege 15 role network-operator secret sha512 {{ arista_encrypted_password }}
+aaa authorization exec default local
+spanning-tree mode none
+management ssh
+   ip access-group management_ssh in
