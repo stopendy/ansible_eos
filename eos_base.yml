@@ -1,0 +1,19 @@
+- hosts: veos
+  gather_facts: false
+
+  tasks:
+    - name: modify hostname (non-resource-module)
+      arista.eos.system:
+        hostname: '{{ inventory_hostname }}'
+    - name: create management ssh acls
+      arista.eos.eos_acls:
+        config: '{{ eos_acls }}'
+        state: merged
+    - name: attach management ssh acls (non-resource-module)
+      eos_config:
+        parents: management ssh
+        lines:
+          - ip access-group management_ssh in
+    - name: modify globals (non-resource-module)
+      arista.eos.eos_config:
+        lines: '{{ eos_globals }}'

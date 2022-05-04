@@ -1,0 +1,41 @@
+ansible_user: admin
+ansible_password: admin
+ansible_network_os: arista.eos.eos
+ansible_connection: network_cli
+ansible_become: true
+
+eos_user_aggregate:
+  - name: admin
+    configured_password: admin
+    privilege: 15
+    role: network-admin
+    state: present
+  - name: arista
+    configured_password: arista
+    privilege: 1
+    role: network-operator
+    state: present
+
+eos_globals:
+  - spanning-tree mode none
+  - aaa authorization exec default local
+
+eos_acls:
+  - acls:
+      - aces:
+          - destination:
+              any: true
+            grant: permit
+            protocol: ip
+            sequence: 10
+            source:
+              host: 192.168.0.1
+          - destination:
+              any: true
+            grant: permit
+            protocol: ip
+            sequence: 20
+            source:
+              host: 192.168.0.2
+        name: management_ssh
+    afi: ipv4

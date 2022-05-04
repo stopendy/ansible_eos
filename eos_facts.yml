@@ -1,0 +1,8 @@
+- hosts: veos
+  gather_facts: false
+
+  tasks:
+    - name: gather EOS facts
+      arista.eos.eos_facts:
+        gather_network_resources: all
+        gather_subset: '!all'

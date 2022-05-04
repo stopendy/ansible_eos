@@ -1,0 +1,7 @@
+- hosts: veos
+  gather_facts: false
+
+  tasks:
+    - name: restore hostname (not a resource module)
+      arista.eos.system:
+        state: absent

@@ -1,0 +1,7 @@
+- hosts: veos
+  gather_facts: false
+
+  tasks:
+    - name: configure users (not a resource module)
+      arista.eos.eos_user:
+        aggregate: '{{ eos_user_aggregate }}'
