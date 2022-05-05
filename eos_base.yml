@@ -1,11 +1,11 @@
-- hosts: veos
+- hosts: eos
   gather_facts: false
 
   tasks:
     - name: create management ssh acls
       arista.eos.eos_acls:
         config: '{{ eos_acls }}'
-        state: replaced
+        state: merged
       register: _result
       changed_when: _result.commands != []
 

@@ -19,8 +19,8 @@ eos_user_aggregate:
 admin_cleartext_password: admin
 arista_cleartext_password: arista
 
-admin_encrypted_password: '{{ admin_cleartext_password | password_hash("sha512", "veos") }}'
-arista_encrypted_password: '{{ arista_cleartext_password | password_hash("sha512", "veos") }}'
+admin_encrypted_password: '{{ admin_cleartext_password | password_hash("sha512", "eos") }}'
+arista_encrypted_password: '{{ arista_cleartext_password | password_hash("sha512", "eos") }}'
 
 eos_acls:
   - acls:
